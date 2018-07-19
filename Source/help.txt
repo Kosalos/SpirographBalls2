@@ -1,0 +1,62 @@
+Spirograph Balls 2
+
+Spheres rolling on each other drag a ribbon in 3D.
+
+The panel on the left holds two kinds of controls:
+buttons, and one or two dimensional widgets.
+
+Widgets:
+Slide your finger up and down the list to select
+the desired widget.  Its' legend will turn Green.
+
+Now on the image,
+slider your finger to control the widget's parameters.
+
+Double tap on a widget legend to toggle it between
+fast and slow editing.  Red graph background = slow.
+
+Buttons:
+The button command is performed by selecting the
+legend, then releasing your finger.
+
+Note: Pinch the image to control zoom.
+Note: Drag 2 fingers on image to control rotation.
+Note: Tap the image to halt rotation.
+
+A. Reset
+   Halt the spheres, reset theor sizes, and clear the ribbon.
+
+B. Restart
+   Clear the ribbon.
+
+C. Sphere 1..4
+   Here are four sphere control panels.
+   Specfiy rotation speed and sphere size of sphere.
+
+D. Ribbon
+   Set the width of the ribbon.
+
+E. Set Ribbon transarancy.
+
+F. Style
+   Toggle the Spheres rendering between solid and wire.
+
+G. Set transarancy of all spheres.
+
+H. New Skin
+   Select random skin for spheres and rubbon.
+
+I. Xaxis Only
+   Toggle whether spheres can rotation on their Yaxis.
+
+J. Harmonize
+   Adjust rotation speeds to multiples of each other.
+
+K. Stereo
+   Toggle stereo view on/off:
+
+   Image is rendered twice, for 'cross-eyed' 3D viewing.
+   With the iPad held two feet away, slightly cross
+   your eyes so that there is a third image in the middle.
+   Relax your gaze, and concentrate only on that
+   middle image, which is in 3D.

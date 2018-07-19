@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="ipad12_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="SpirographBalls2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9sQ-bp-QHc"/>
+                        <viewControllerLayoutGuide type="bottom" id="yDg-Pc-LEh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3se-qz-xqx" userLabel="View">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eTc-Wh-ygZ" customClass="MTKView">
+                                <rect key="frame" x="25" y="99" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="XyV-Yl-0t0" appends="YES" id="XTI-Hz-yjM"/>
+                                    <outletCollection property="gestureRecognizers" destination="AfX-Ia-esd" appends="YES" id="ADQ-un-jev"/>
+                                    <outletCollection property="gestureRecognizers" destination="xfi-kQ-1xe" appends="YES" id="hr9-Tm-uiA"/>
+                                    <outletCollection property="gestureRecognizers" destination="YP9-Da-BA5" appends="YES" id="nwk-6a-c45"/>
+                                    <outletCollection property="gestureRecognizers" destination="eVe-tF-IK4" appends="YES" id="P7c-R7-7mq"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pwf-O4-Si2" customClass="MTKView">
+                                <rect key="frame" x="25" y="157" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="veT-tx-7sJ" appends="YES" id="T4C-8r-UQw"/>
+                                    <outletCollection property="gestureRecognizers" destination="3sR-DU-Uaw" appends="YES" id="c4j-eP-X1J"/>
+                                    <outletCollection property="gestureRecognizers" destination="stW-kz-i15" appends="YES" id="x01-lt-CYN"/>
+                                    <outletCollection property="gestureRecognizers" destination="Ah0-8V-EaY" appends="YES" id="aET-v4-vIr"/>
+                                    <outletCollection property="gestureRecognizers" destination="4mN-Xm-OKN" appends="YES" id="EZi-vC-Lw0"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EPI-E3-a0s" customClass="WidgetGroup" customModule="SpirographBalls2" customModuleProvider="target">
+                                <rect key="frame" x="25" y="235" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <gestureRecognizers/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                    </view>
+                    <size key="freeformSize" width="600" height="600"/>
+                    <connections>
+                        <outlet property="d3ViewL" destination="eTc-Wh-ygZ" id="duQ-SI-RD2"/>
+                        <outlet property="d3ViewR" destination="Pwf-O4-Si2" id="H3h-Ox-7Cy"/>
+                        <outlet property="wg" destination="EPI-E3-a0s" id="k0d-Kf-5N1"/>
+                        <segue destination="5CA-AY-ZSF" kind="popoverPresentation" identifier="helpSegue" popoverAnchorView="EPI-E3-a0s" id="nuD-61-DgB">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="XyV-Yl-0t0">
+                    <connections>
+                        <action selector="pinchGesture:" destination="BV1-FR-VrT" id="mI4-a4-qhz"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <pinchGestureRecognizer id="veT-tx-7sJ">
+                    <connections>
+                        <action selector="pinchGesture:" destination="BV1-FR-VrT" id="6Af-gV-zFW"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="3sR-DU-Uaw">
+                    <connections>
+                        <action selector="panGesture:" destination="BV1-FR-VrT" id="p3P-d0-9QI"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="AfX-Ia-esd">
+                    <connections>
+                        <action selector="panGesture:" destination="BV1-FR-VrT" id="4WC-5p-tHY"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="xfi-kQ-1xe">
+                    <connections>
+                        <action selector="tapGesture:" destination="BV1-FR-VrT" id="Z90-of-dtP"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="stW-kz-i15">
+                    <connections>
+                        <action selector="tapGesture:" destination="BV1-FR-VrT" id="FSf-fP-Kw9"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="YP9-Da-BA5">
+                    <connections>
+                        <action selector="tap2Gesture:" destination="BV1-FR-VrT" id="Ext-Iw-cbq"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="Ah0-8V-EaY">
+                    <connections>
+                        <action selector="tap2Gesture:" destination="BV1-FR-VrT" id="X5p-yY-oTR"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="2" id="eVe-tF-IK4">
+                    <connections>
+                        <action selector="pan2Gesture:" destination="BV1-FR-VrT" id="PzY-O6-IqH"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="2" id="4mN-Xm-OKN">
+                    <connections>
+                        <action selector="pan2Gesture:" destination="BV1-FR-VrT" id="FaK-TO-YlD"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-1275" y="-1123"/>
+        </scene>
+        <!--Help View Controller-->
+        <scene sceneID="SJ5-qL-JDu">
+            <objects>
+                <viewController id="5CA-AY-ZSF" customClass="HelpViewController" customModule="SpirographBalls2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wV2-J6-T2n"/>
+                        <viewControllerLayoutGuide type="bottom" id="A4n-4y-7J1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="left" id="dWY-RQ-I3o">
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="700"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFJ-2t-2Yd">
+                                <rect key="frame" x="175" y="28" width="445" height="652"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help" translatesAutoresizingMaskIntoConstraints="NO" id="siP-gk-qmm">
+                                <rect key="frame" x="21" y="28" width="146" height="652"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="146" id="2ya-fV-GBr"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" staticText="YES"/>
+                        </accessibility>
+                        <constraints>
+                            <constraint firstItem="siP-gk-qmm" firstAttribute="top" secondItem="LFJ-2t-2Yd" secondAttribute="top" id="5FP-Vz-1Bt"/>
+                            <constraint firstItem="LFJ-2t-2Yd" firstAttribute="leading" secondItem="siP-gk-qmm" secondAttribute="trailing" constant="8" symbolic="YES" id="AN9-KG-qN8"/>
+                            <constraint firstItem="siP-gk-qmm" firstAttribute="bottom" secondItem="LFJ-2t-2Yd" secondAttribute="bottom" id="BjW-aZ-F7A"/>
+                            <constraint firstItem="siP-gk-qmm" firstAttribute="leading" secondItem="dWY-RQ-I3o" secondAttribute="leadingMargin" constant="1" id="O4l-fp-7ox"/>
+                            <constraint firstItem="LFJ-2t-2Yd" firstAttribute="trailing" secondItem="dWY-RQ-I3o" secondAttribute="trailingMargin" id="XPg-FM-1qd"/>
+                            <constraint firstAttribute="bottom" secondItem="siP-gk-qmm" secondAttribute="bottom" constant="20" symbolic="YES" id="cyt-c4-eN1"/>
+                            <constraint firstItem="siP-gk-qmm" firstAttribute="top" secondItem="wV2-J6-T2n" secondAttribute="bottom" constant="8" symbolic="YES" id="gnZ-Qc-uYP"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="640" height="700"/>
+                    <size key="freeformSize" width="640" height="700"/>
+                    <connections>
+                        <outlet property="textView" destination="LFJ-2t-2Yd" id="tgm-Rk-fY8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8mt-XW-AV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-899" y="-1101"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="help" width="351" height="1562"/>
+    </resources>
+</document>
