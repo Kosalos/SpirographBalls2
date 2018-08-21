@@ -19,12 +19,15 @@ Buttons:
 The button command is performed by selecting the
 legend, then releasing your finger.
 
+Note: Swipe up/down on control panel to move focus.
+
 Note: Pinch the image to control zoom.
 Note: Drag 2 fingers on image to control rotation.
 Note: Tap the image to halt rotation.
+Note: Double Tap image to toggle display of control panel.
 
 A. Reset
-   Halt the spheres, reset theor sizes, and clear the ribbon.
+   Halt the spheres, reset their sizes, and clear the ribbon.
 
 B. Restart
    Clear the ribbon.

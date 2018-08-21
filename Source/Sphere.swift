@@ -11,6 +11,7 @@ class Sphere {
     var vBuffer: MTLBuffer?
     var vData = Array<TVertex>()
     var radius:Float = 1
+    var oldRadius:Float = 1
     var center:float3 = float3()
     var color:float4 = float4(1,1,1,1)
     var drawStyle:UInt8 = 1
@@ -45,6 +46,7 @@ class Sphere {
 
     func setRadius(_ nradius:Float) {
         radius = nradius
+        oldRadius = nradius
         generate()
     }
     

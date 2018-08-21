@@ -80,12 +80,12 @@
                 </pinchGestureRecognizer>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="3sR-DU-Uaw">
                     <connections>
-                        <action selector="panGesture:" destination="BV1-FR-VrT" id="p3P-d0-9QI"/>
+                        <action selector="panGesture:" destination="BV1-FR-VrT" id="zY9-FO-7Kf"/>
                     </connections>
                 </panGestureRecognizer>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="AfX-Ia-esd">
                     <connections>
-                        <action selector="panGesture:" destination="BV1-FR-VrT" id="4WC-5p-tHY"/>
+                        <action selector="panGesture:" destination="BV1-FR-VrT" id="6vA-ad-aTY"/>
                     </connections>
                 </panGestureRecognizer>
                 <tapGestureRecognizer id="xfi-kQ-1xe">
@@ -100,22 +100,22 @@
                 </tapGestureRecognizer>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="YP9-Da-BA5">
                     <connections>
-                        <action selector="tap2Gesture:" destination="BV1-FR-VrT" id="Ext-Iw-cbq"/>
+                        <action selector="tap2Gesture:" destination="BV1-FR-VrT" id="bn1-15-j2q"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="Ah0-8V-EaY">
                     <connections>
-                        <action selector="tap2Gesture:" destination="BV1-FR-VrT" id="X5p-yY-oTR"/>
+                        <action selector="tap2Gesture:" destination="BV1-FR-VrT" id="P3a-yi-1Xc"/>
                     </connections>
                 </tapGestureRecognizer>
                 <panGestureRecognizer minimumNumberOfTouches="2" id="eVe-tF-IK4">
                     <connections>
-                        <action selector="pan2Gesture:" destination="BV1-FR-VrT" id="PzY-O6-IqH"/>
+                        <action selector="pan2Gesture:" destination="BV1-FR-VrT" id="eJI-11-Yvd"/>
                     </connections>
                 </panGestureRecognizer>
                 <panGestureRecognizer minimumNumberOfTouches="2" id="4mN-Xm-OKN">
                     <connections>
-                        <action selector="pan2Gesture:" destination="BV1-FR-VrT" id="FaK-TO-YlD"/>
+                        <action selector="pan2Gesture:" destination="BV1-FR-VrT" id="4Ou-Ji-P2e"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>
@@ -172,6 +172,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="help" width="351" height="1562"/>
+        <image name="help" width="301" height="1538"/>
     </resources>
 </document>

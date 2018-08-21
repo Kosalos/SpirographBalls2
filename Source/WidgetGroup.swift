@@ -8,7 +8,7 @@ protocol WGDelegate {
     func wgAlterPosition(_ dx:Float, _ dy:Float)
 }
 
-enum CmdIdent { case help,stereo,clear,reset,style,skin,xOnly,pi }
+enum CmdIdent { case none,help,stereo,clear,reset,style,skin,xOnly,pi,radius }
 enum WgEntryKind { case singleFloat,dualFloat,dropDown,command,legend,line,string,color,move }
 
 let NONE:Int = -1
@@ -109,16 +109,19 @@ class WidgetGroup: UIView {
         data[ddIndex].str.append(iname)
     }
     
-    func addSingleFloat(_ vx:UnsafeMutableRawPointer, _ min:Float, _ max:Float,  _ delta:Float, _ iname:String) {
+    func addSingleFloat(_ vx:UnsafeMutableRawPointer, _ min:Float, _ max:Float,  _ delta:Float, _ iname:String, _ ncmd:CmdIdent = .none) {
         newEntry()
         data[dIndex].kind = .singleFloat
+        data[dIndex].cmd = ncmd
         data[dIndex].valuePointerX = vx
         addCommon(dIndex,min,max,delta,iname)
     }
     
-    func addDualFloat(_ vx:UnsafeMutableRawPointer, _ vy:UnsafeMutableRawPointer, _ min:Float, _ max:Float,  _ delta:Float, _ iname:String) {
+    func addDualFloat(_ vx:UnsafeMutableRawPointer, _ vy:UnsafeMutableRawPointer, _ min:Float, _ max:Float,  _ delta:Float,
+                      _ iname:String, _ ncmd:CmdIdent = .none) {
         newEntry()
         data[dIndex].kind = .dualFloat
+        data[dIndex].cmd = ncmd
         data[dIndex].valuePointerX = vx
         data[dIndex].valuePointerY = vy
         addCommon(dIndex,min,max,delta,iname)
@@ -264,6 +267,8 @@ class WidgetGroup: UIView {
                 let valueY = fClamp2(data[focus].getFloatValue(1) + deltaY * data[focus].deltaValue, data[focus].mRange)
                 data[focus].valuePointerY.storeBytes(of:valueY, as:Float.self)
             }
+            
+            if data[focus].cmd != .none { wgCommand(data[focus].cmd) }
         }
         
         setNeedsDisplay()
@@ -294,6 +299,18 @@ class WidgetGroup: UIView {
             let den = Float((data[focus].kind == .move) ? 10 : 100)
             deltaX /= den
             deltaY /= den
+        }
+        
+        setNeedsDisplay()
+    }
+    
+    func moveFocus(_ dir:Int) {
+        if focus == NONE || data.count < 2 { return }
+        
+        while true {
+            focus += dir
+            if focus >= data.count { focus = 0 } else if focus < 0 { focus = data.count-1 }
+            if [ .singleFloat, .dualFloat ].contains(data[focus].kind) { break }
         }
         
         setNeedsDisplay()

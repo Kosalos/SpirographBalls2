@@ -14,7 +14,7 @@ class ViewController: UIViewController, WGDelegate {
     var rendererL: Renderer!
     var rendererR: Renderer!
     var controlBuffer:MTLBuffer! = nil
-
+    
     var isStereo:Bool = false
     var ribbonWidth:Float = 0.2
     var sphereAlpha:Float = 1
@@ -22,11 +22,11 @@ class ViewController: UIViewController, WGDelegate {
     var drawStyle:Int = 1
     var xAxisOnly:Bool = false
     var center = CGPoint()
-
+    
     @IBOutlet var d3ViewL: MTKView!
     @IBOutlet var d3ViewR: MTKView!
     @IBOutlet var wg: WidgetGroup!
-
+    
     //MARK: -
     
     override func viewDidLoad() {
@@ -35,12 +35,12 @@ class ViewController: UIViewController, WGDelegate {
         gDevice = MTLCreateSystemDefaultDevice()
         d3ViewL.device = gDevice
         d3ViewR.device = gDevice
-
+        
         guard let newRenderer = Renderer(metalKitView: d3ViewL, 0) else { fatalError("Renderer cannot be initialized") }
         rendererL = newRenderer
         rendererL.mtkView(d3ViewL, drawableSizeWillChange: d3ViewL.drawableSize)
         d3ViewL.delegate = rendererL
-
+        
         guard let newRenderer2 = Renderer(metalKitView: d3ViewR, 1) else { fatalError("Renderer cannot be initialized") }
         rendererR = newRenderer2
         rendererR.mtkView(d3ViewR, drawableSizeWillChange: d3ViewR.drawableSize)
@@ -50,12 +50,21 @@ class ViewController: UIViewController, WGDelegate {
         
         reset()
         initializeWidgetGroup()
-        initRenderViews()
+        layoutViews()
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeWgGesture(gesture:)))
+        swipeUp.direction = .up
+        wg.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeWgGesture(gesture:)))
+        swipeDown.direction = .down
+        wg.addGestureRecognizer(swipeDown)
+        
         Timer.scheduledTimer(withTimeInterval:0.05, repeats:true) { timer in self.timerHandler() }
     }
     
     //MARK: -
-
+    
     func initializeWidgetGroup() {
         wg.delegate = self
         wg.initialize()
@@ -64,15 +73,15 @@ class ViewController: UIViewController, WGDelegate {
             let rRange:Float = 0.4
             wg.addLegend(String(format:"Sphere %d",i))
             wg.addDualFloat(&spheres[i].rotX,&spheres[i].rotY, -rRange,rRange,rRange/10,"Rotate")
-            wg.addSingleFloat(&spheres[i].radius, 0.2,3.0,0.5,"Radius")
+            wg.addSingleFloat(&spheres[i].radius, 0.2,3.0,0.5,"Radius",.radius)
             wg.addLine()
         }
-
+        
         wg.addCommand("Reset",.reset)
         wg.addLine()
         wg.addCommand("Restart",.clear)
         wg.addLine()
-
+        
         for i in 1 ... numSpheres { sphereGroup(i) }
         
         wg.addLegend("Ribbon")
@@ -97,14 +106,18 @@ class ViewController: UIViewController, WGDelegate {
     
     //MARK: -
     
-    func initRenderViews() {
+    func layoutViews() {
+        var xBase = CGFloat()
         let WgWidth:CGFloat = 120
         
-        wg.frame = CGRect(x:0, y:0, width:WgWidth, height:view.bounds.height)
+        if !wg.isHidden {
+            xBase = WgWidth
+            wg.frame = CGRect(x:0, y:0, width:WgWidth, height:view.bounds.height)
+        }
         
-        var vr = CGRect(x:WgWidth, y:0, width:view.bounds.width-WgWidth, height:view.bounds.height)
+        var vr = CGRect(x:xBase, y:0, width:view.bounds.width-xBase, height:view.bounds.height)
         d3ViewL.frame = vr
-
+        
         if isStereo {
             vr.size.width /= 2
             d3ViewL.frame = vr
@@ -127,18 +140,25 @@ class ViewController: UIViewController, WGDelegate {
     //MARK: -
     
     @objc func timerHandler() {
-        for s in spheres { s.update() }
-        _ = wg.update()
         
-        // ribbon edge centered on last sphere, along a line that connects it to the previous sphere
-        let base = spheres[numSpheres-1].center // 2nd to last sphere
-        let end = spheres[numSpheres].center  // last sphere
-        let diff = end - base
-        let p1 = base + diff * (1.0 - ribbonWidth)
-        let p2 = base + diff * (1.0 + ribbonWidth)
-        ribbon.addStrip(p1,p2)
-        
-        rotate(paceRotate.x,paceRotate.y)
+        if radiusIndex == NONE {
+            for s in spheres { s.update() }
+            _ = wg.update()
+            
+            // ribbon edge centered on last sphere, along a line that connects it to the previous sphere
+            let base = spheres[numSpheres-1].center // 2nd to last sphere
+            let end = spheres[numSpheres].center  // last sphere
+            let diff = end - base
+            let p1 = base + diff * (1.0 - ribbonWidth)
+            let p2 = base + diff * (1.0 + ribbonWidth)
+            ribbon.addStrip(p1,p2)
+            
+            rotate(paceRotate.x,paceRotate.y)
+        }
+        else {
+            for s in spheres { s.generate() }
+            _ = wg.update()
+        }
     }
     
     //MARK: -
@@ -162,7 +182,7 @@ class ViewController: UIViewController, WGDelegate {
         switch(cmd) {
         case .stereo :
             isStereo = !isStereo
-            initRenderViews()
+            layoutViews()
             
         case .clear :
             ribbon.reset()
@@ -180,7 +200,7 @@ class ViewController: UIViewController, WGDelegate {
         case .style :
             drawStyle = 1 - drawStyle
             for i in 0 ... numSpheres { spheres[i].setDrawStyle(drawStyle) }
-
+            
         case .pi :
             func harmonize(_ v:Float) -> Float { // intent is that rotations are increments of pi / 60
                 if v == 0 { return 0 }
@@ -201,8 +221,12 @@ class ViewController: UIViewController, WGDelegate {
         case .skin :
             tIndex1 = Int(arc4random() % 7)
             tIndex2 = Int(arc4random() % 7)
-
+            
         case .help : performSegue(withIdentifier: "helpSegue", sender: self)
+            
+        case .radius :
+            radiusIndex = 1 + (wg.focus - 6)/4   // kludge to get sphere index from control panel ( base 1 )
+        default : break
         }
         
         wg.setNeedsDisplay()
@@ -212,6 +236,23 @@ class ViewController: UIViewController, WGDelegate {
     func wgGetColor(_ index:Int) -> UIColor { return .white }
     func wgRefresh() {}
     func wgAlterPosition(_ dx:Float, _ dy:Float) {}
+    
+    //MARK: -
+    
+    var radiusIndex:Int = NONE
+    
+    func radiusChangedCallback() {
+        if radiusIndex != NONE {
+            let ratio:Float = pow(spheres[radiusIndex].oldRadius,2) / pow(spheres[radiusIndex].radius,2)
+            spheres[radiusIndex].oldRadius = spheres[radiusIndex].radius
+            
+            spheres[radiusIndex].rotX *= ratio
+            spheres[radiusIndex].rotY *= ratio
+            
+            radiusIndex = NONE
+            ribbon.reset()
+        }
+    }
     
     //MARK: -
     
@@ -248,10 +289,20 @@ class ViewController: UIViewController, WGDelegate {
             pt.x -= oldPt.x
             pt.y -= oldPt.y
             wg.focusMovement(pt)
-        default :
+        case .ended :
+            radiusChangedCallback()
             pt.x = 0
             pt.y = 0
             wg.focusMovement(pt)
+        default : break
+        }
+    }
+    
+    @objc func swipeWgGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        switch gesture.direction {
+        case .up : wg.moveFocus(-1)
+        case .down : wg.moveFocus(+1)
+        default : break
         }
     }
     
@@ -286,8 +337,14 @@ class ViewController: UIViewController, WGDelegate {
         paceRotate.x = 0
         paceRotate.y = 0
     }
-
+    
     @IBAction func tapGesture(_ sender: UITapGestureRecognizer) { stopRotation() }
+    
+    @IBAction func tap2Gesture(_ sender: UITapGestureRecognizer) {
+        wg.isHidden = !wg.isHidden
+        layoutViews()
+    }
+    
     override var prefersStatusBarHidden: Bool { return true }
 }
 
@@ -302,19 +359,6 @@ func drawLine(_ context:CGContext, _ p1:CGPoint, _ p2:CGPoint) {
 
 func drawVLine(_ context:CGContext, _ x:CGFloat, _ y1:CGFloat, _ y2:CGFloat) { drawLine(context,CGPoint(x:x,y:y1),CGPoint(x:x,y:y2)) }
 func drawHLine(_ context:CGContext, _ x1:CGFloat, _ x2:CGFloat, _ y:CGFloat) { drawLine(context,CGPoint(x:x1, y:y),CGPoint(x: x2, y:y)) }
-
-func drawRect(_ context:CGContext, _ r:CGRect) {
-    context.beginPath()
-    context.addRect(r)
-    context.strokePath()
-}
-
-func drawFilledCircle(_ context:CGContext, _ center:CGPoint, _ diameter:CGFloat, _ color:CGColor) {
-    context.beginPath()
-    context.addEllipse(in: CGRect(x:CGFloat(center.x - diameter/2), y:CGFloat(center.y - diameter/2), width:CGFloat(diameter), height:CGFloat(diameter)))
-    context.setFillColor(color)
-    context.fillPath()
-}
 
 //MARK:-
 
