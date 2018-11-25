@@ -61,22 +61,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UTExportedTypeDeclarations</key>
-	<array>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.data</string>
-				<string>public.content</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>msh</string>
-			<key>UTTypeIconFiles</key>
-			<array/>
-			<key>UTTypeIdentifier</key>
-			<string>KUTTypeText</string>
-		</dict>
-	</array>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -93,5 +77,7 @@
 			<string>KUTTypeText</string>
 		</dict>
 	</array>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 </dict>
 </plist>
