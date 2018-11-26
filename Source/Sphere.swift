@@ -77,7 +77,7 @@ class Sphere {
     var oldSalpha:Float = 0
 
     func generate() {
-        if fabs(oldSalpha - vc.sphereAlpha) > 0.01 {
+        if abs(oldSalpha - vc.sphereAlpha) > 0.01 {
             oldSalpha = vc.sphereAlpha
             for i in 0 ..< vData.count { unitSphereVData[i].color = float4(1,1,1,oldSalpha) }
         }
@@ -119,7 +119,7 @@ class Sphere {
         let rotInc = Float(Double.pi * 2) / Float(nLat)
         
         for p in 1 ..< nPitch {
-            let out = fabs(radius * sinf(Float(p) * pitchInc))
+            let out = abs(radius * sinf(Float(p) * pitchInc))
             let y = radius * cosf(Float(p) * pitchInc)
             var fs:Float = 0
             for i in 0 ..< nLat {

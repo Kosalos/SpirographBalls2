@@ -375,12 +375,11 @@ func drawText(_ x:CGFloat, _ y:CGFloat, _ color:UIColor, _ sz:CGFloat, _ str:Str
         let font = UIFont.init(name: "Helvetica", size:sz)!
         
         textFontAttributes = [
-            NSAttributedStringKey.font: font,
-            NSAttributedStringKey.foregroundColor: color,
-            NSAttributedStringKey.paragraphStyle: paraStyle,
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: color,
+            NSAttributedString.Key.paragraphStyle: paraStyle,
         ]
     }
     
-    str.draw(in: CGRect(x:x, y:y, width:800, height:100), withAttributes: textFontAttributes as? [NSAttributedStringKey : Any])
+    str.draw(in: CGRect(x:x, y:y, width:800, height:100), withAttributes: textFontAttributes as? [NSAttributedString.Key : Any])
 }
-

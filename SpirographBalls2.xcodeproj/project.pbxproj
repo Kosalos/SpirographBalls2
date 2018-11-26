@@ -32,7 +32,7 @@
 		1D14906E1F9FA199004B538F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D1490711F9FA199004B538F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D1490731F9FA199004B538F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D594DC6206B17F900A7EB3A /* MishMash2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MishMash2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D594DC6206B17F900A7EB3A /* SpirographBalls2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpirographBalls2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D75605620F3DED5002DF246 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		1D75605920F3DEE9002DF246 /* ArcBall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcBall.swift; sourceTree = "<group>"; };
 		1D75605B20F3DFB7002DF246 /* AAPLTransforms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AAPLTransforms.swift; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		1D1490601F9FA199004B538F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D594DC6206B17F900A7EB3A /* MishMash2.app */,
+				1D594DC6206B17F900A7EB3A /* SpirographBalls2.app */,
 			);
 			name = Products;
 			path = ..;
@@ -111,7 +111,7 @@
 			);
 			name = SpirographBalls2;
 			productName = MarchingCubesPro;
-			productReference = 1D594DC6206B17F900A7EB3A /* MishMash2.app */;
+			productReference = 1D594DC6206B17F900A7EB3A /* SpirographBalls2.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -328,7 +328,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Harry.com.SpirographBalls2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Source/ShaderTypes.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -348,7 +348,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Harry.com.SpirographBalls2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Source/ShaderTypes.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

@@ -60,7 +60,7 @@ class Ribbon {
         oldP2 = p2
         
         // ------------------------------
-        if fabs(oldRalpha - vc.ribbonAlpha) > 0.01 {
+        if abs(oldRalpha - vc.ribbonAlpha) > 0.01 {
             oldRalpha = vc.ribbonAlpha
             
             for i in 0 ..< MAX_RIBBON {
